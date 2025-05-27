@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import AddToCartButton from "./AddToCartButton";
 import incrementProductQuantity from "./actions";
-import { Metadata } from "next";
 
 interface ProductPageProps {
   params: {
@@ -21,14 +20,12 @@ const getProduct = cache(async (id: string) => {
 });
 
 export async function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
-  const product = await getProduct(params.id);
+  params: { id },
+}: ProductPageProps): Promise<Metadata> {
+  const product = await getProduct(id);
 
   return {
-    title: `${product.name} - Flowmazon`,
+    title: product.name + " - Flowmazon",
     description: product.description,
     openGraph: {
       images: [{ url: product.imageUrl }],
