@@ -26,6 +26,7 @@ export async function generateMetadata({
   params: { id: string };
 }): Promise<Metadata> {
   const product = await getProduct(params.id);
+
   return {
     title: `${product.name} - Flowmazon`,
     description: product.description,
