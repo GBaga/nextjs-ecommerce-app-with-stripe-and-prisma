@@ -30,6 +30,9 @@ export async function generateMetadata({
   return {
     title: `${product.name} - Flowmazon`,
     description: product.description,
+    openGraph: {
+      images: [{ url: product.imageUrl }],
+    },
   };
 }
 
